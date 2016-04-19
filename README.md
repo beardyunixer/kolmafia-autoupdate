@@ -20,5 +20,9 @@ configurations where you can't just ./mafia
 Additionally, if you're running this from an app menu (eg, Klicker) or a desktop
 shortcut, you'll also need to explicitly call 'php /path/to/mafia'
 
-
+Oh, and requirements are weird.  This is written in PHP, so you'll need CLI PHP
+installed, which you probably won't on a desktop.  apt-get install php5-cli on
+Debian systems.  The reason for this is the script was intended for me and me
+alone, and I'm only publishing it because somebody else said they'd find it 
+useful.
 
