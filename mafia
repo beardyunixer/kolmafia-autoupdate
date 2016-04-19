@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+	$data = file_get_contents('http://ci.kolmafia.us/job/Kolmafia/lastSuccessfulBuild/api/json');
+
+	$arr = json_decode($data,true);
+
+	$filename = $arr['artifacts'][0]['fileName'];
+
+	$version = 'none';
+
+	if (file_exists('version'))
+		$version = file_get_contents('version');
+
+if ($version !== $filename) {
+		$cmd = 'wget http://ci.kolmafia.us/job/Kolmafia/lastSuccessfulBuild/artifact/dist/' . $filename;
+		@shell_exec($cmd);
+		$rename = 'mv ' . $filename . ' KoLMafia.jar';
+		@shell_exec($rename);
+		file_put_contents('version',$filename);
+}
+
+@shell_exec('java -jar KoLMafia.jar');
+
